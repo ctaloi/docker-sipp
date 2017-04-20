@@ -1,6 +1,7 @@
 # Docker container for SIPp
 
-Docker container for running [SIPP](http://sipp.sourceforge.net/index.html).  Builds version 3.5 from [Github ](https://github.com/SIPp/).
+- Docker container for running [SIPp](http://sipp.sourceforge.net/index.html)
+- Builds version 3.5 from [Github ](https://github.com/SIPp)
 
 ## Getting Started
 
