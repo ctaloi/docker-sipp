@@ -39,6 +39,8 @@ RFC2833 PCAPs are included in the REPO and can be called in your scenarios using
 
 If you want to expose port 5060 (so you can send SIP _to_ SIPp from a remote host) you can start the container using the `-p` flag and then inspect the container to determine the external port.  I started three containers running SIPp using `docker run -d -p 5060 ctaloi/sipp -sn uas` and now have ports `32785-32878` mapped to each SIPp instance.  SIPp now appears on port 5060 of the contianer but 32785 externally.
 
+Note: If you want to use udp specify your port as `-p 5060/udp`
+
 ```
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                     NAMES
