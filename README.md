@@ -58,7 +58,7 @@ $ docker inspect 7569c4574ba1
             },
 ```
 
-You can also map port 5060 externally to 5060 on your container using the same argument but declaring both ports:
+You can also map port 5060 externally to 5060 on your container using the same argument by declaring both ports:
 
 ```
 $ docker run -d -p 5060:5060 ctaloi/sipp -sn uas
