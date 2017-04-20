@@ -19,6 +19,7 @@ WORKDIR /
 RUN rm -rf sipp-3.5.1*
 
 WORKDIR /sipp
-ADD pcap /sipp 
+
+EXPOSE 5060
 
 ENTRYPOINT ["sipp"]
