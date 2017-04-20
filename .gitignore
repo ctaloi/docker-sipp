@@ -1,0 +1,4 @@
+scenarios/*
+*log*
+*trace*
+*.xml
