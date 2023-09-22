@@ -1,4 +1,5 @@
-scenarios/*
+scenarios/
+pcap/
 *log*
 *trace*
 *.xml

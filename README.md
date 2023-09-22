@@ -1,7 +1,7 @@
 # Docker container for SIPp
 
 - Docker container for running [SIPp](http://sipp.sourceforge.net/index.html)
-- Builds version 3.5 from [Github ](https://github.com/SIPp)
+- Builds version 3.6.1 from [Github ](https://github.com/SIPp)
 - [Github Repo](https://github.com/ctaloi/docker-sipp)
 - [Docker Hub](https://hub.docker.com/r/ctaloi/sipp/)
 

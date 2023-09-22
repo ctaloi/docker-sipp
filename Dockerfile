@@ -1,24 +1,25 @@
-FROM ubuntu:latest
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
-RUN apt-get install -y build-essential
-
-ADD https://github.com/SIPp/sipp/releases/download/v3.5.1/sipp-3.5.1.tar.gz /
-RUN tar -xzf /sipp-3.5.1.tar.gz
-
-RUN apt-get install -y libssl-dev
-RUN apt-get install -y libpcap-dev
-RUN apt-get install -y libsctp-dev
-RUN apt-get install -y libncurses5-dev
-
-WORKDIR /sipp-3.5.1
-RUN ./configure --with-pcap --with-sctp --with-openssl --with-rtpstream
-RUN make install
-
-WORKDIR /
-RUN rm -rf sipp-3.5.1*
+FROM debian:bullseye-slim AS compile
+ARG SIPP_VERSION="3.6.1"
 
 WORKDIR /sipp
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends build-essential cmake wget libssl-dev libpcap-dev libsctp-dev libncurses5-dev && \
+    wget --no-check-certificate "https://github.com/SIPp/sipp/releases/download/v$SIPP_VERSION/sipp-$SIPP_VERSION.tar.gz" && \
+    tar -xzf sipp-$SIPP_VERSION.tar.gz -C . && \
+    cd sipp-$SIPP_VERSION && \
+    ./build.sh --full
+
+FROM debian:bullseye-slim AS sipp
+
+ARG SIPP_VERSION="3.6.1"
+
+
+RUN apt-get update && apt-get install -y --no-install-recommends libncurses5 libncursesw6 libpcap0.8 libsctp1
+
+WORKDIR /sipp
+
+COPY --from=compile /sipp/sipp-${SIPP_VERSION}/sipp /usr/local/bin/
+COPY --from=compile /sipp/sipp-${SIPP_VERSION}/pcap /sipp/pcap/
 
 EXPOSE 5060
 
